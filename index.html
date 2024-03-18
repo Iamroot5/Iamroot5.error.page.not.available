@@ -59,69 +59,68 @@
  }
 </style>
 
-
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Video Ad Popup</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .popup {
-            max-width: 90%;
-            max-height: 90%;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+<title>Advertisement Pop-up with Close Button</title>
+<style>
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 2px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 9999;
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  display: none;
+}
+p{
+  color:green;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
-    <div class="overlay" id="videoPopup">
-        <div class="popup">
-            <iframe width="200" height="315" src="https://www.youtube.com/embed/asilW4p9R_Q?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <button class="close-btn" onclick="closePopup()">skip  video</button>
-        </div>
-    </div>
 
-    <script>
-        function closePopup() {
-            document.getElementById("videoPopup").style.display = "none";
-        }
+<div class="overlay" id="overlay"></div>
 
-        function showVideoPopup() {
-            document.getElementById("videoPopup").style.display = "flex";
-        }
+<div class="popup" id="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <img width="200" src="https://i.ibb.co/6JqQ5WM/IMG-20240305-212426-839.jpg">
+  <p>Scan this code and install app and signup then get Free R8 airtime</p>
+</div>
 
-        setTimeout(showVideoPopup, 10000); // Display popup after 10 seconds
-    </script>
+<script>
+function closePopup() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("popup").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function(){
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popup").style.display = "block";
+  }, 1000); // 2000 milliseconds (2 seconds) delay before displaying the pop-up
+});
+</script>
+
 </body>
 </html>
